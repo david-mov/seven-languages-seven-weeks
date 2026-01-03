@@ -69,20 +69,12 @@ module TreeToArray
   end
 end
 
-class Tree
+class Tree < BasicTree
   include TreeToArray
   attr_accessor :children, :node_name
   def initialize(tree={})
     @node_name = tree.keys[0]
     @children = hasht_to_arrt(tree[@node_name])
-  end
-
-  def visit_all(&block)
-    visit &block
-    children.each {|c| c.visit_all &block}
-  end
-  def visit(&block)
-    block.call self
   end
 end
 
